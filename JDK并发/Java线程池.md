@@ -326,6 +326,8 @@ public int prestartAllCoreThreads() {
 `ThreadPoolExecutor.AbortPolicy:丢弃任务并抛出RejectedExecutionException异常。``ThreadPoolExecutor.DiscardPolicy：也是丢弃任务，但是不抛出异常。``ThreadPoolExecutor.DiscardOldestPolicy：丢弃队列最前面的任务，然后重新尝试执行任务（重复此过程）``ThreadPoolExecutor.CallerRunsPolicy：由调用线程处理该任务`
 ```
 
+通常来说,如果我们选择BlockingQueue,并且没有手动指定容量上限,那么是不会采取拒绝策略的,因为此时多余的任务都会放入WorkingQueue中,但是有时候我们需要控制总的任务数量,可以手动指定Queue的容量,从而达到执行拒绝策略的目的
+
 ## 线程池的关闭
 
 　　ThreadPoolExecutor提供了两个方法，用于线程池的关闭，分别是shutdown()和shutdownNow()，其中：
